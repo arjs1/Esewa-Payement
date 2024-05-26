@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payement_integration/Pages/home_page/model/car_model.dart';
 import 'package:payement_integration/Pages/payement_page/payement_page.dart';
+import 'package:payement_integration/core/database/car_database.dart';
+import 'package:payement_integration/core/utilis/car_data.dart';
 
 class CarContainer extends StatelessWidget {
   final String carImage;
@@ -15,6 +17,7 @@ class CarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SqlCarService _sqlCarService = SqlCarService.sqlDatabase;
     return Center(
       child: Container(
         width: 400,
@@ -85,6 +88,12 @@ class CarContainer extends StatelessWidget {
                   padding: EdgeInsets.all(15),
                   color: const Color.fromARGB(255, 44, 110, 224),
                   onPressed: () {
+                    //-------------- inserting data into database -------------->
+                    _sqlCarService.addCar(CarModel(
+                        carImage: carImage,
+                        carName: carName,
+                        carPrice: carPrice));
+                    //--------------- data inserted in database ---------------->
                     Navigator.push(
                       context,
                       MaterialPageRoute(

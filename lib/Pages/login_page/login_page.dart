@@ -14,13 +14,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.height * 0.25,
             horizontal: MediaQuery.of(context).size.width / 5),
         child: Form(
             key: _formKey,
-            child: Column(
+            child: ListView(
               children: [
                 TextFormField(
                   controller: myController,
